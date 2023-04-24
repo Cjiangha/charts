@@ -4,14 +4,8 @@
 <head>
     <meta charset="utf-8">
 </head>
-<style>
-    body {
-        /* background-color: #0e2152; */
-        background: url("https://www.baidu.com/img/flexible/logo/pc/result.png") no-repeat center center;
-    }
-</style>
 
-<body style="height: 100%; width:100%;">
+<body style="height: 100%; width:100%">
     <div id="chart-panel" style="height: 100%;width: 100%"></div>
     <script type="text/javascript" src="./echarts.min.js"></script>
     <script type="text/javascript" src="./china.js"></script>
@@ -78,7 +72,6 @@
 
 
         option = {
-            // backgroundColor: '#000f1e',
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
@@ -92,8 +85,7 @@
                 bottom: '10%',
                 left: '10%',
             },
-            geo: [
-                {
+            geo: [{
                     map: mapName,
                     zlevel: -1,
                     zoom: 1.0,
@@ -104,9 +96,8 @@
                     itemStyle: {
                         normal: {
                             borderColor: 'rgba(192,245,249,.8)',
-                            // borderColor: 'rgba(82,137,227,.8)',
                             borderWidth: 3,
-                            shadowColor: '#6FFDFF', //下方阴影颜色
+                            shadowColor: '#6FFDFF',
                             shadowOffsetY: 0,
                             shadowBlur: 10,
                             // areaColor: 'rgba(29,85,139,.6)',
@@ -129,7 +120,6 @@
                         },
                     },
                 },
-
                 {
                     show: true,
                     map: mapName,
@@ -304,29 +294,6 @@
                             ],
                             global: true, // 缺省为 false
                         },
-
-                        // areaColor: {
-                        //     type: 'linear-gradient',
-                        //     x: 0,
-                        //     y: 1000,
-                        //     x2: 0,
-                        //     y2: 0,
-                        //     colorStops: [{
-                        //             offset: 0,
-                        //             color: '#fff', // 0% 处的颜色
-                        //         }, {
-                        //             offset: 0.5,
-                        //             color: 'rgb(32,105,234)', // 0% 处的颜色
-                        //         },
-                        //         {
-                        //             offset: 1,
-                        //             color: 'rgb(77,130,224)', // 0% 处的颜色
-                        //         },
-                        //     ],
-                        //     global: true, // 缺省为 false
-                        // },
-
-                        areaColor: "rgba(43, 196, 243, 0.42)"
                     },
                     emphasis: {
                         label: {
@@ -368,63 +335,62 @@
         var timer = null;
         var chart = echarts.init(document.getElementById('chart-panel'));
         var dataLength = option.series[0].data.length;
-        // timer && clearInterval(timer);
-        // timer = setInterval(() => {
-        //     chart.dispatchAction({
-        //         type: 'downplay',
-        //         seriesIndex: 0,
-        //     });
-        //     chart.dispatchAction({
-        //         type: 'highlight',
-        //         seriesIndex: 0,
-        //         dataIndex: count % dataLength,
-        //     });
-        //     chart.dispatchAction({
-        //         type: 'showTip',
-        //         seriesIndex: 0,
-        //         dataIndex: count % dataLength,
-        //     });
-        //     count++;
-        // }, 3000);
-        // chart.on('mouseover', function (params) {
-        //     clearInterval(timer);
-        //     chart.dispatchAction({
-        //         type: 'downplay',
-        //         seriesIndex: 0,
-        //     });
-        //     chart.dispatchAction({
-        //         type: 'highlight',
-        //         seriesIndex: 0,
-        //         dataIndex: params.dataIndex,
-        //     });
-        //     chart.dispatchAction({
-        //         type: 'showTip',
-        //         seriesIndex: 0,
-        //         dataIndex: params.dataIndex,
-        //     });
-        // });
-        // chart.on('mouseout', function (params) {
-        //     timer && clearInterval(timer);
-        //     timer = setInterval(function () {
-        //         chart.dispatchAction({
-        //             type: 'downplay',
-        //             seriesIndex: 0,
-        //         });
-        //         chart.dispatchAction({
-        //             type: 'highlight',
-        //             seriesIndex: 0,
-        //             dataIndex: count % dataLength,
-        //         });
-        //         chart.dispatchAction({
-        //             type: 'showTip',
-        //             seriesIndex: 0,
-        //             dataIndex: count % dataLength,
-        //         });
-        //         count++;
-        //     }, 3000);
-        // });
+        timer && clearInterval(timer);
+        timer = setInterval(() => {
+            chart.dispatchAction({
+                type: 'downplay',
+                seriesIndex: 0,
+            });
+            chart.dispatchAction({
+                type: 'highlight',
+                seriesIndex: 0,
+                dataIndex: count % dataLength,
+            });
+            chart.dispatchAction({
+                type: 'showTip',
+                seriesIndex: 0,
+                dataIndex: count % dataLength,
+            });
+            count++;
+        }, 3000);
+        chart.on('mouseover', function (params) {
+            clearInterval(timer);
+            chart.dispatchAction({
+                type: 'downplay',
+                seriesIndex: 0,
+            });
+            chart.dispatchAction({
+                type: 'highlight',
+                seriesIndex: 0,
+                dataIndex: params.dataIndex,
+            });
+            chart.dispatchAction({
+                type: 'showTip',
+                seriesIndex: 0,
+                dataIndex: params.dataIndex,
+            });
+        });
+        chart.on('mouseout', function (params) {
+            timer && clearInterval(timer);
+            timer = setInterval(function () {
+                chart.dispatchAction({
+                    type: 'downplay',
+                    seriesIndex: 0,
+                });
+                chart.dispatchAction({
+                    type: 'highlight',
+                    seriesIndex: 0,
+                    dataIndex: count % dataLength,
+                });
+                chart.dispatchAction({
+                    type: 'showTip',
+                    seriesIndex: 0,
+                    dataIndex: count % dataLength,
+                });
+                count++;
+            }, 3000);
+        });
 
-        console.log('option', option)
         if (option && typeof option === 'object') {
             myChart.setOption(option);
         }

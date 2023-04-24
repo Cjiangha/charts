@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html style="height: 100%;width:100%">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body style="height: 100%; width:100%">
+    <div id="myChart3" style="height: 100%;width: 100%"></div>
+    <script type="text/javascript" src="./util/echart.min.js"></script>
+    <script type="text/javascript" src="./echarts-gl.min.js.js"></script>
+
+    <script type="text/javascript">
+        this.myChart3 = this.echarts.init(document.getElementById('myChart3'))
+        this.option3 = {
+            title: {
+                text: '3维立体图',
+                left: 'center',
+                align: 'right'
+            },
+            grid: {
+                top: 0,
+                left: 10,
+                right: 10,
+                bottom: 50
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    animation: false,
+                    label: {
+                        backgroundColor: '#505765'
+                    }
+                }
+            },
+            legend: {
+                data: ['1', '2', '3'],
+                left: 10
+            },
+            xAxis3D: {
+                name: 'X轴',
+                type: 'value',
+            },
+            yAxis3D: {
+                name: 'Y轴',
+                type: 'value',
+                min: 0,
+                max: 360
+            },
+            zAxis3D: {
+                name: 'Z轴',
+                type: 'value'
+            },
+            grid3D: {
+                viewControl: {
+                    beta: 45,
+                    alpha: 18,
+                    minDistance: 0,
+                    projection: 'orthographic',
+                    animation: false, //这句话 要加，不然动画会卡住，影响展示
+                    minAlpha: -90, // 垂直旋转正交
+                    maxAlpha: 90, // 垂直旋转正交
+                }
+            },
+            series: [{
+                    name: '1',
+                    type: 'bar3D',
+                    itemStyle: {
+                        normal: {
+                            color: '#0041DC'
+                        }
+                    },
+                    barSize: 0.3,
+                    animation: false,
+                    data: [0]
+                },
+                {
+                    name: '2',
+                    type: 'bar3D',
+                    itemStyle: {
+                        normal: {
+                            color: '#ff0000'
+                        }
+                    },
+                    barSize: 0.3,
+                    animation: false,
+                    data: [0]
+                },
+                {
+                    name: '3',
+                    type: 'bar3D',
+                    itemStyle: {
+                        normal: {
+                            color: '#64FF00'
+                        }
+                    },
+                    barSize: 0.3,
+                    animation: false,
+                    data: [0]
+                }
+            ]
+        }
+
+        this.myChart3.setOption(this.option3, true);
+    </script>
+</body>
+
+</html>

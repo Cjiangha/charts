@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Line Chart</title>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+<script>
+    // 创建场景
+const scene = new THREE.Scene();
+
+// 创建相机
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 10;
+
+// 创建渲染器
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// 创建点的数据
+const points = [
+  new THREE.Vector3(-5, 0, 0),
+  new THREE.Vector3(0, 5, 0),
+  new THREE.Vector3(5, 0, 0),
+  new THREE.Vector3(0, -5, 0)
+];
+
+// 创建线的几何体
+const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
+// 创建线的材质
+const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+
+// 创建线
+const line = new THREE.Line(geometry, material);
+
+// 将线添加到场景
+scene.add(line);
+
+// 动画渲染函数
+function animate() {
+  requestAnimationFrame(animate);
+
+  // 旋转线条
+  line.rotation.x += 0.01;
+  line.rotation.y += 0.01;
+
+  renderer.render(scene, camera);
+}
+
+animate();
+</script>

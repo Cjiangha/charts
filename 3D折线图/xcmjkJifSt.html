@@ -82,8 +82,8 @@
                 }
                 s.push({
                     name: dataset.dimensions[i],
-                    // type: 'line3D', // bar3D、line3D
-                    type: type,
+                    type: 'line3D', // bar3D、line3D
+                    // type: type,
                     // stack: 'stack',
                     data: data.map(function (item, index) {
                         //   console.log(item,index)
@@ -237,6 +237,7 @@
         if (option && typeof option === 'object') {
             myChart.setOption(option);
         }
+        console.log('option',option)
     </script>
 </body>
 
