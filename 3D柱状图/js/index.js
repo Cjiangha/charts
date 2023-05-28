@@ -215,6 +215,5 @@ function getRenderItem(params, api) {
   };
 }
 
-
 option && myChart.setOption(option);
 

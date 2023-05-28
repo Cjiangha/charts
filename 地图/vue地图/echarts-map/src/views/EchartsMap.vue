@@ -2,7 +2,7 @@
   <div class="content">
     <div
       ref="charts"
-      style="width: 1200px; height: 1000px; margin: 0 auto"
+      style="width: 100%; height: 450px; margin: 0 auto"
     ></div>
   </div>
 </template>
@@ -153,8 +153,8 @@ export default {
 <style scoped>
 .content {
   /* background-color: #0e2152; */
-  background: url("https://www.baidu.com/img/flexible/logo/pc/result.png")
-    no-repeat center center;
+  /* background: url("https://www.baidu.com/img/flexible/logo/pc/result.png")
+    no-repeat center center; */
   height: 100%;
 }
 </style>
